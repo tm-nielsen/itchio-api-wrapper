@@ -1,0 +1,1 @@
+A very simple web server built to let me query a list of my games from the itch.io api on a static portfolio site without exposing my api key.
