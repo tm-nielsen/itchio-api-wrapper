@@ -4,4 +4,5 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const expressApp = createApp()
-expressApp.listen(8080)
+expressApp.listen(process.env.PORT, () =>
+  console.log(`express server listening on port ${process.env.PORT}...`))
