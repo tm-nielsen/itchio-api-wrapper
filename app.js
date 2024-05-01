@@ -19,6 +19,7 @@ exports.createApp = () => {
     fetchGameList((gameList) => res.json(cleanGameList(gameList)))
   })
 
+  // TODO: wait then retry call when failed with code 429
   const fetchGameList = (callback) => {
     const requestPath = `https://itch.io/api/1/${process.env.ITCHIO_API_KEY}/my-games`
 
@@ -58,16 +59,17 @@ exports.createApp = () => {
         short_text: gameInfo.short_text,
         url: gameInfo.url,
         cover_url: gameInfo.cover_url,
-        has_web_build: gameInfo.type === 'html',
         created_at: gameInfo.created_at,
         published_at: gameInfo.published_at,
         views_count: gameInfo.views_count,
         downloads_count: gameInfo.downloads_count,
+        p_web: gameInfo.type === 'html',
         p_windows: gameInfo.p_windows,
-        p_osx: gameInfo.osx,
-        p_linux: gameInfo.linux
+        p_osx: gameInfo.p_osx,
+        p_linux: gameInfo.p_linux
       }
     })
+
     return gameList
   }
     
